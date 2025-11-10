@@ -1,0 +1,147 @@
+.navbar {
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 40px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.navbar-logo-icon {
+  width: 24px;
+  height: 24px;
+  color:#ff9a52;
+  fill: #ff9a52;
+}
+
+.navbar-logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.navbar-link {
+  color: #333333;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  transition: color 0.2s;
+  position: relative;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  color: #ff9a52;
+}
+
+.navbar-link.active {
+  font-weight: 600;
+  color: #ff9a52;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.login-button {
+  background-color: #ff9a52;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #ff9a52;
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar {
+    padding: 0 20px;
+  }
+  
+  .navbar-center {
+    gap: 20px;
+  }
+  
+  .navbar-link {
+    font-size: 0.9rem;
+  }
+  
+  .adopt-button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-center {
+    gap: 16px;
+  }
+  
+  .navbar-link {
+    font-size: 0.85rem;
+  }
+  
+  .navbar-logo-text {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    height: 60px;
+    padding: 0 16px;
+  }
+  
+  .navbar-center {
+    display: none;
+  }
+  
+  .navbar-logo-text {
+    font-size: 1.2rem;
+  }
+  
+  .adopt-button {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
