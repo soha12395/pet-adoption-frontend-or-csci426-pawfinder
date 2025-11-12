@@ -10,6 +10,7 @@ import Contact from './components/Contact'
 import BrowsePets from './components/BrowsePets'
 import About from './components/About'
 import Footer from  './components/Footer';
+import Login from './components/login.jsx';
 
 import {BrowserRouter as Router , Routes , Route } from 'react-router-dom'; 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path ="/browsepets" excat Component={BrowsePets}/>
           <Route path ="/about" excat Component={About}/>
           <Route path ="/contact" excat Component={Contact}/>
+            <Route path="/login" element={<Login />} />
         </Routes>
      
         <Footer/>
