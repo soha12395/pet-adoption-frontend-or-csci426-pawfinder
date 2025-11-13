@@ -1,29 +1,41 @@
 import React, { useState } from "react";
-import "../styles/Login.css";
-import { useNavigate, Link } from "react-router-dom";
+import "../styles/Signup.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(""); 
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("userEmail", email);
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    
     localStorage.setItem("userName", name || "User");
+    localStorage.setItem("userEmail", email);
 
-    console.log("Logged in as:", name, email);
+    console.log("New Account Created:", { name, email });
 
-  
+    alert("Account created successfully!");
+
+    
     navigate("/browsepets");
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Login</h2>
+    <div className="signup-container">
+      <div className="signup-card">
+        <h2>Create Account</h2>
+        <h3>Please fill in this form to create an account</h3>
+
         <form onSubmit={handleSubmit}>
           <label>Full Name</label>
           <input
@@ -52,18 +64,20 @@ const Login = () => {
             required
           />
 
-          <button type="submit">Login</button>
-        </form>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Re-enter your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
 
-        <p className="signup-text">
-          Don’t have an account?{" "}
-          <Link to="/signup" className="signup-link">
-            Sign Up
-          </Link>
-        </p>
+          <button type="submit">Sign Up</button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

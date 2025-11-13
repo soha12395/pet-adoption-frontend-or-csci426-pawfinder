@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/PetDetails.css";
-
+import { Link } from "react-router-dom";
 const PetDetails = ({ pet, onBack }) => {
   if (!pet) return <p>Pet not found.</p>;
 
@@ -44,7 +44,9 @@ const PetDetails = ({ pet, onBack }) => {
 
           <div className="adoption-section">
             <span className="adoption-fee">Adoption Fee ${pet.fee}</span>
+            <Link to="/Adoptionform">
             <button className="adopt-btn">Start Adoption Process</button>
+            </Link>
           </div>
         </div>
       </div>

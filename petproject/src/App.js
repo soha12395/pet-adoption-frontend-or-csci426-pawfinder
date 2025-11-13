@@ -11,6 +11,8 @@ import BrowsePets from './components/BrowsePets'
 import About from './components/About'
 import Footer from  './components/Footer';
 import Login from './components/login.jsx';
+import Signup from './components/Signup';
+import Adoptionform from './components/Adoptionform.jsx';
 
 import {BrowserRouter as Router , Routes , Route } from 'react-router-dom'; 
 function App() {
@@ -25,6 +27,9 @@ function App() {
           <Route path ="/about" excat Component={About}/>
           <Route path ="/contact" excat Component={Contact}/>
             <Route path="/login" element={<Login />} />
+            <Route path ='/signup' element={<Signup/>}/>
+            <Route path="/adoptionform" element={<Adoptionform />} />
+            
         </Routes>
      
         <Footer/>

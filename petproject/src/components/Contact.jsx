@@ -39,7 +39,7 @@ function Contact() {
         </div>
 
         <div className="contact-content">
-          {/* Contact Form أول شي */}
+          {/* Contact Form  */}
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
@@ -107,7 +107,7 @@ function Contact() {
             </button>
           </form>
 
-          {/* Contact Info بعد الفورم */}
+              {/* Contact Info */}
           <div className="contact-info">
             <div className="info-item">
               <div className="info-icon">📍</div>
