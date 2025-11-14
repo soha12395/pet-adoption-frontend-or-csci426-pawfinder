@@ -23,10 +23,20 @@ Static Pages: Includes an "About Us" page detailing the organization's mission a
 2. Browse Pets Page (with Filters)
   ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/fcc522990f4488934a62c8a705bf07176a61b816/BrowsePets%20page.png)
 3. Pet Details Page
-   
+    ![image alt]()
 7. Login & Signup Pages
-8. Adoption Form (Protected)
-9. About Us Page
+8.  ![image alt]()
+9.   ![image alt]()
+10. Adoption Form (Protected)
+11.  ![image alt]()
+12. About Us Page
+13.  ![image alt]()
+    ![image alt]()
+13.Contact Page
+ ![image alt]()
+14.Footer
+ ![image alt]()
+
 
 🛠️ Technologies Used
 React: The core JavaScript library used for building the user interface.
