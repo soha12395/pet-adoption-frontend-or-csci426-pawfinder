@@ -38,7 +38,7 @@ Static Pages: Includes an "About Us" page detailing the organization's mission a
 
 6. About Us Page
 
-![image alt]()
+![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/30f870a14414aaf1710fb80448ac6dddf26ea577/About1%20page.png)
     
  ![image alt]()
  
