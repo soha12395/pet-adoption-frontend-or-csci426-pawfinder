@@ -5,6 +5,8 @@ import leo from "../assets/Leo.png";
 import rocky from "../assets/Rocky.jpg";
 import charlie from "../assets/Charlie.jpg";
 import bella from "../assets/Bella.jpg";
+import snowball from "../assets/snowball.png";
+import shadow from "../assets/shadow.png";
 import "../styles/BrowsePets.css";
 import PetDetails from "./PetDetails.jsx";
 
@@ -68,6 +70,7 @@ const petsData = [
     traits: ["Calm", "Gentle", "Well-trained"],
     image: charlie,
   },
+
   {
     id: 6,
     name: "Bella",
@@ -80,20 +83,45 @@ const petsData = [
     traits: ["Curious", "Playful", "Sweet"],
     image: bella,
   },
+  {
+  id: 7,
+  name: "Shadow",
+  species: "Dog",
+  size: "Small",
+  age: "4m",
+  gender: "Male",
+  fee: 190,
+  description: "A playful and affectionate black Labrador puppy.",
+  traits: ["Energetic", "Friendly", "Loyal"],
+  image:shadow,
+  },
+
+
+  {
+  id: 8,
+  name: "Snowball",
+  species: "Cat",
+  size: "Small",
+  age: "1y",
+  gender: "Female",
+  fee: 300,
+  description: "A beautiful white Persian cat with a calm and gentle nature.",
+  traits: ["Calm", "Affectionate", "Elegant"],
+  image: snowball,
+}
 ];
 
 const BrowsePets = () => {
   const [speciesFilter, setSpeciesFilter] = useState("All");
   const [sizeFilter, setSizeFilter] = useState("All");
   const [selectedPet, setSelectedPet] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // state للبحث
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // اضغط الزر لتعيين الـ pet المختارة
+
   function handleDetails(pet) {
     setSelectedPet(pet);
   }
 
-  // هون، اذا في pet مختارة، فرجّع تفاصيلها مباشرة
   if (selectedPet) {
     return (
       <PetDetails pet={selectedPet} onBack={() => setSelectedPet(null)} />
@@ -104,7 +132,7 @@ const BrowsePets = () => {
   (p) =>
     (speciesFilter === "All" || p.species === speciesFilter) &&
     (sizeFilter === "All" || p.size === sizeFilter) &&
-    p.name.toLowerCase().includes(searchTerm.toLowerCase()) // فلتر حسب الاسم
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())  
 );
 
   return (

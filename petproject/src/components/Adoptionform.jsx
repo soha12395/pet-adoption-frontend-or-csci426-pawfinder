@@ -20,7 +20,7 @@ useEffect(() => {
   }
 
   setUserInfo({ name: storedName, email: storedEmail });
-}, []);
+}, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

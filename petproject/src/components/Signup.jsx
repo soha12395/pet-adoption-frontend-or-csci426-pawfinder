@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
     return;
   }
 
-  const users = JSON.parse(localStorage.getItem("users")) || []; //get acounts
+  const users = JSON.parse(localStorage.getItem("users")) || []; //get accounts
 
   if (users.some(user => user.email === email)) {  //check if email already exist
     alert("Account with this email already exists!");
