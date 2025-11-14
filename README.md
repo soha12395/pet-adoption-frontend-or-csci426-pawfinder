@@ -37,7 +37,7 @@ Static Pages: Includes an "About Us" page detailing the organization's mission a
 13.Contact Page
  ![image alt]()
 14.Footer
- ![image alt]()
+ ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/c6366a14377992feccb05e1522a3fcd951c72530/Footer.png)
 
 
 🛠️ Technologies Used
