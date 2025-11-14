@@ -19,6 +19,7 @@ Static Pages: Includes an "About Us" page detailing the organization's mission a
 
 📸 Screenshots
 1. Home Page
+ ![image alt]()
 3. Browse Pets Page (with Filters)
 4. Pet Details Page
 5. Login & Signup Pages
