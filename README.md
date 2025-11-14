@@ -1,12 +1,12 @@
-#Paws of Beirut 🐾
+# Paws of Beirut 🐾
 
 Paws of Beirut is a single-page web application (SPA) built with React. It serves as a fictional platform for a pet adoption agency, allowing users to browse available pets, filter them by specific criteria, and submit adoption applications.
 
-#Project Overview:
+# Project Overview:
 
 This application provides a complete front-end experience for a pet adoption service. It features user authentication (simulated with browser storage), a dynamic pet browsing and filtering system, and protected routes for actions like applying for adoption.
 
-✨ 3Features
+# ✨ Features
 
 User Authentication: Users can create an account and log in. The system uses localStorage to store user accounts and sessionStorage to manage active login sessions.
 
@@ -20,41 +20,41 @@ Protected Adoption Form: Only logged-in users can access the adoption applicatio
 
 Static Pages: Includes an "About Us" page detailing the organization's mission and a "Contact" form.
 
-📸 #Screenshots
-1. Home Page
+# 📸 Screenshots
+## 1. Home Page
  ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/f4d9cb732dc01c0c612a213de03da2407dcded6d/home%20page.png)
 
-2. Browse Pets Page (with Filters)
+## 2. Browse Pets Page (with Filters)
   ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/fcc522990f4488934a62c8a705bf07176a61b816/BrowsePets%20page.png)
 
-3. Pet Details Page
+## 3. Pet Details Page
     ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/f20625db13ca4bcd83bd5fa002b08362406666be/PetDetail%20page.png)
 
-4. Login & Signup Pages
+## 4. Login & Signup Pages
  ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/d96a77f0458ed990ad5320d1143c736064947b34/Login%20page.png)
     
 ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/c2a4e1a906aa52ad865b699ae54509eae5d00034/SignUp%20page.png)
 
-5. Adoption Form (Protected)
+## 5. Adoption Form (Protected)
 
 ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/3a7fc35f5136574162c986dc5dbc036caec88969/AdoptionApplication%20page.png)
 
-6. About Us Page
+## 6. About Us Page
 
 ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/30f870a14414aaf1710fb80448ac6dddf26ea577/About1%20page.png)
     
  ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/11d407620db152f84a89083311fbf8a91af98e54/About2%20page.png)
  
-7.Contact Page
+## 7.Contact Page
  
  ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/c1908ccf4ee9ccb53d5b5ffcbb2f08445318b8c1/Contact%20page.png)
 
-8.Footer
+## 8.Footer
  
  ![image alt](https://github.com/elghazzirania-cloud/pet-adoption-frontend-or-csci426-pawfinder/blob/c6366a14377992feccb05e1522a3fcd951c72530/Footer.png)
 
 
-🛠️ Technologies Used
+# 🛠️ Technologies Used
 React: The core JavaScript library used for building the user interface.
 
 React Router (react-router-dom): Used for client-side routing and navigation.
@@ -67,12 +67,12 @@ Custom CSS: All styling is handled with custom CSS files using Flexbox and Grid.
 
 Browser Storage: localStorage and sessionStorage to simulate auth and session.
 
-🚀 Deployment
+# 🚀 Deployment
 This application is deployed live on Vercel / Netlify.
 
 Live Link: [Your Deployment URL Here]
 
-🏁 Getting Started
+# 🏁 Getting Started
 Follow these instructions to get a copy of the project up and running on your local machine.
 
 Prerequisites
