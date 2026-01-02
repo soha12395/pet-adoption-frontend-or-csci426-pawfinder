@@ -1,36 +1,40 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
-  const [name, setName] = useState(""); 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
+    if (values.password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    console.log(values);
 
-  const users = JSON.parse(localStorage.getItem("users")) || []; //get accounts
-
-  if (users.some(user => user.email === email)) {  //check if email already exist
-    alert("Account with this email already exists!");
-    return;
-  }
-
-  users.push({ name, email, password });  //add new user
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Account created successfully!");
-  navigate("/login");
-};
+    axios
+      .post("http://localhost:5000/signup", values)
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          navigate("/login");
+        } else {
+          alert(res.data.Error);
+        }
+      })
+      .catch((err) => console.log(err));
+    alert("Account created successfully!");
+    navigate("/login");
+  };
 
   return (
     <div className="signup-container">
@@ -43,8 +47,8 @@ const handleSubmit = (e) => {
           <input
             type="text"
             placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={values.name}
+            onChange={(e) => setValues({ ...values, name: e.target.value })}
             required
           />
 
@@ -52,8 +56,8 @@ const handleSubmit = (e) => {
           <input
             type="email"
             placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values.email}
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
             required
           />
 
@@ -61,8 +65,8 @@ const handleSubmit = (e) => {
           <input
             type="password"
             placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.password}
+            onChange={(e) => setValues({ ...values, password: e.target.value })}
             required
           />
 

@@ -1,39 +1,69 @@
-
 import React, { useState, useEffect } from "react";
 import "../styles/Adoptionform.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Adoptionform = () => {
   const [reason, setReason] = useState("");
   const [address, setAddress] = useState("");
-  const [userInfo, setUserInfo] = useState({ name: "", email: "" });
-
+  const [email, setEmail] = useState("");
+  const [pet, setPet] = useState(null);
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-useEffect(() => {
-  const storedName = sessionStorage.getItem("userName");
-  const storedEmail = sessionStorage.getItem("userEmail");
 
-  if (!storedName || !storedEmail) {
-    alert("You must be logged in to access the adoption form.");
-    navigate("/login");
-    return;
-  }
+  useEffect(() => {
+    const storedPet = sessionStorage.getItem("selectedPet");
+    if (!storedPet) {
+      alert("No pet selected!");
+      navigate("/browsepets");
+    } else {
+      setPet(JSON.parse(storedPet));
+    }
+  }, [navigate]);
 
-  setUserInfo({ name: storedName, email: storedEmail });
-}, [navigate]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/auth", { withCredentials: true })
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          setEmail(res.data.email);
+          setName(res.data.name);
+        } else {
+          navigate("/login");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [navigate]);
+
+  if (loading || !pet) return <p>Loading...</p>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert("Your adoption application has been submitted! 🐶");
-
-    console.log("Adoption Application Submitted:", {
-      name: userInfo.name,
-      email: userInfo.email,
-      reason,
+    const data = {
+      pet_id: pet.id,
+      user_name: name,
+      user_email: email,
       address,
-    });
+      reason,
+    };
+    axios
+      .post("http://localhost:5000/adopt", data)
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          alert(res.data.Message);
+          navigate("/browsepets");
+        } else {
+          alert(res.data.Error);
+        }
+      })
+      .catch((err) => console.log(err));
   };
+
 
   return (
     <div className="adoption-container">
@@ -42,7 +72,7 @@ useEffect(() => {
 
         <form onSubmit={handleSubmit}>
           <p>
-            <strong>Logged in as:</strong> {userInfo.name} ({userInfo.email})
+            <strong>Logged in as:</strong> {name}
           </p>
 
           <label>Address</label>
