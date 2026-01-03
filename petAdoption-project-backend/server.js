@@ -5,8 +5,8 @@ import bcrypt from "bcrypt";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 
-//import mysql from "mysql";
 // import dotenv from "dotenv";
+
 // dotenv.config();
 
 const salt = 10;
@@ -32,28 +32,39 @@ app.use(cookieParser());
 // });
 
 const db = mysql.createConnection({
-  host: process.env.MYSQLHOST || "localhost",
-  port: process.env.MYSQLPORT || 3306,
-  user: process.env.MYSQLUSER || "root",
-  password: process.env.MYSQLPASSWORD || "",
-  database: process.env.MYSQLDATABASE || "railway",
-  ssl: {
-    rejectUnauthorized: false // إجباري لـ Railway!
-  },
-  connectTimeout: 10000,
-  charset: 'utf8mb4'
-
+  host: process.env.DB_HOST || process.env.MYSQLHOST || "localhost",
+  port: process.env.DB_PORT || process.env.MYSQLPORT || 3306,
+  user: process.env.DB_USER || process.env.MYSQLUSER || "root",
+  password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || "",
+  database: process.env.DB_NAME || process.env.MYSQLDATABASE || "petadoption",
+  ssl: (process.env.DB_HOST || process.env.MYSQLHOST)?.includes("railway")
+    ? { rejectUnauthorized: false }
+    : undefined,
 });
 
 db.connect((err) => {
   if (err) {
-    console.log("DB connection error:", err);
+    console.error("❌ DB Connection Error:", err.message);
+    console.log("🔧 Connection details (hidden password):", {
+      host: process.env.DB_HOST || process.env.MYSQLHOST,
+      port: process.env.DB_PORT || process.env.MYSQLPORT,
+      database: process.env.DB_NAME || process.env.MYSQLDATABASE,
+      user: process.env.DB_USER || process.env.MYSQLUSER,
+      hasPassword: !!(process.env.DB_PASSWORD || process.env.MYSQLPASSWORD),
+    });
   } else {
-    console.log("Connected to DB");
+    console.log("✅ Connected to Database!");
+    console.log(
+      `📊 Database: ${
+        process.env.DB_NAME || process.env.MYSQLDATABASE || "Unknown"
+      }`
+    );
+    console.log(
+      `🌐 Environment: ${process.env.DB_HOST ? "Production" : "Local"}`
+    );
   }
 });
-
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
@@ -175,6 +186,11 @@ app.post("/adopt", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(
+    `🌐 Database: ${
+      process.env.DB_NAME || process.env.MYSQLDATABASE || "petadoption"
+    }`
+  );
 });
