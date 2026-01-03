@@ -31,21 +31,27 @@ app.use(cookieParser());
 //   database: "petadoption",
 // });
 
-// const db = mysql.createConnection({
-//   host: process.env.MYSQLHOST || "localhost",
-//   port: process.env.MYSQLPORT || 3306,
-//   user: process.env.MYSQLUSER || "root",
-//   password: process.env.MYSQLPASSWORD || "",
-//   database: process.env.MYSQLDATABASE || "railway",
-// });
+const db = mysql.createConnection({
+  host: process.env.MYSQLHOST || "localhost",
+  port: process.env.MYSQLPORT || 3306,
+  user: process.env.MYSQLUSER || "root",
+  password: process.env.MYSQLPASSWORD || "",
+  database: process.env.MYSQLDATABASE || "railway",
+  ssl: {
+    rejectUnauthorized: false // إجباري لـ Railway!
+  },
+  connectTimeout: 10000,
+  charset: 'utf8mb4'
 
-// db.connect((err) => {
-//   if (err) {
-//     console.log("DB connection error:", err);
-//   } else {
-//     console.log("Connected to DB");
-//   }
-// });
+});
+
+db.connect((err) => {
+  if (err) {
+    console.log("DB connection error:", err);
+  } else {
+    console.log("Connected to DB");
+  }
+});
 
 const port = process.env.PORT || 5000;
 
