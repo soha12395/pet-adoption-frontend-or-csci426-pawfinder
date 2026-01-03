@@ -31,39 +31,55 @@ app.use(cookieParser());
 //   database: "petadoption",
 // });
 
+// ⚡ الحل: استخدم معلومات Railway مباشرة
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || process.env.MYSQLHOST || "localhost",
-  port: process.env.DB_PORT || process.env.MYSQLPORT || 3306,
-  user: process.env.DB_USER || process.env.MYSQLUSER || "root",
-  password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || "",
-  database: process.env.DB_NAME || process.env.MYSQLDATABASE || "petadoption",
-  ssl: (process.env.DB_HOST || process.env.MYSQLHOST)?.includes("railway")
-    ? { rejectUnauthorized: false }
-    : undefined,
+  host: "mysql.railway.internal", // ⬅️ من معلوماتك
+  port: 3306,                     // ⬅️ من معلوماتك
+  user: "root",                   // ⬅️ من معلوماتك
+  password: "rUdjTQuBxIrakkVHZnQluiUvkkeZKAYJ", // ⬅️ من معلوماتك
+  database: "railway",            // ⬅️ من معلوماتك
+  ssl: { rejectUnauthorized: false }
 });
+
+// أو إذا ما اشتغل، جرب الـ Public URL:
+// const db = mysql.createConnection({
+//   host: "metro.proxy.rlwy.net",
+//   port: 31247,
+//   user: "root",
+//   password: "rUdjTQuBxIrakkVHZnQluiUvkkeZKAYJ",
+//   database: "railway",
+//   ssl: { rejectUnauthorized: false }
+// });
 
 db.connect((err) => {
   if (err) {
     console.error("❌ DB Connection Error:", err.message);
-    console.log("🔧 Connection details (hidden password):", {
-      host: process.env.DB_HOST || process.env.MYSQLHOST,
-      port: process.env.DB_PORT || process.env.MYSQLPORT,
-      database: process.env.DB_NAME || process.env.MYSQLDATABASE,
-      user: process.env.DB_USER || process.env.MYSQLUSER,
-      hasPassword: !!(process.env.DB_PASSWORD || process.env.MYSQLPASSWORD),
+    console.log("Trying alternative connection...");
+    
+    // محاولة ثانية بالـ Public URL
+    const db2 = mysql.createConnection({
+      host: "metro.proxy.rlwy.net",
+      port: 31247,
+      user: "root",
+      password: "rUdjTQuBxIrakkVHZnQluiUvkkeZKAYJ",
+      database: "railway"
+    });
+    
+    db2.connect((err2) => {
+      if (err2) {
+        console.error("❌ Also failed:", err2.message);
+      } else {
+        console.log("✅ Connected via Public URL!");
+        // استبدال الاتصال
+        Object.assign(db, db2);
+      }
     });
   } else {
-    console.log("✅ Connected to Database!");
-    console.log(
-      `📊 Database: ${
-        process.env.DB_NAME || process.env.MYSQLDATABASE || "Unknown"
-      }`
-    );
-    console.log(
-      `🌐 Environment: ${process.env.DB_HOST ? "Production" : "Local"}`
-    );
+    console.log("✅ Connected to Railway MySQL!");
+    console.log("📊 Database: railway");
   }
 });
+
 const PORT = process.env.PORT || 5000;
 
 const verifyUser = (req, res, next) => {
