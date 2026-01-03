@@ -201,6 +201,24 @@ app.post("/adopt", (req, res) => {
     );
   });
 });
+app.get("/test", (req, res) => {
+  db.query("SELECT NOW() as time", (err, results) => {
+    if (err) {
+      return res.json({
+        error: err.message,
+        backend: "Running but DB issue"
+      });
+    }
+    return res.json({
+      message: "✅ Pet Adoption Backend is WORKING!",
+      status: "Live on Railway",
+      database: "Connected",
+      dbTime: results[0].time,
+      url: "https://discerning-radiance-production.up.railway.app",
+      timestamp: new Date().toISOString()
+    });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
