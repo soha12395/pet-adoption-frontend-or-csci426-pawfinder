@@ -21,11 +21,7 @@ app.use(express.json());
 //   })
 // );
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL, // مثال: https://my-frontend.vercel.app
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
+  cors()
 );
 app.use(cookieParser());
 
