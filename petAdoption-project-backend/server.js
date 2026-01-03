@@ -201,25 +201,64 @@ app.post("/adopt", (req, res) => {
     );
   });
 });
-app.get("/test", (req, res) => {
-  db.query("SELECT NOW() as time", (err, results) => {
+
+// =========== TEST ROUTES ===========
+
+// 1. Basic health check
+app.get("/", (req, res) => {
+  res.json({
+    message: "Pet Adoption Backend API",
+    status: "Live on Railway",
+    url: "https://discerning-radiance-production.up.railway.app",
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      signup: "POST /signup",
+      login: "POST /login", 
+      pets: "GET /pets",
+      adopt: "POST /adopt",
+      auth: "GET /auth"
+    }
+  });
+});
+
+// 2. Database test
+app.get("/health", (req, res) => {
+  db.query("SELECT NOW() as time, DATABASE() as db", (err, results) => {
     if (err) {
-      return res.json({
-        error: err.message,
-        backend: "Running but DB issue"
+      return res.status(500).json({
+        status: "ERROR",
+        backend: "Running",
+        database: "Disconnected",
+        error: err.message
       });
     }
     return res.json({
-      message: "✅ Pet Adoption Backend is WORKING!",
-      status: "Live on Railway",
+      status: "HEALTHY",
+      backend: "Running on Railway",
       database: "Connected",
+      dbName: results[0].db,
       dbTime: results[0].time,
-      url: "https://discerning-radiance-production.up.railway.app",
-      timestamp: new Date().toISOString()
+      serverTime: new Date().toISOString()
     });
   });
 });
 
+// 3. Simple test
+app.get("/test", (req, res) => {
+  res.json({
+    success: true,
+    message: "✅ Backend is working!",
+    service: "Pet Adoption API",
+    environment: "Railway Production",
+    check: "All systems operational"
+  });
+});
+
+// =========== END TEST ROUTES ===========
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(
